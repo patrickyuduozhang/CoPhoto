@@ -36,9 +36,11 @@
     
     MCAdvertiserAssistant *assistant = [[MCAdvertiserAssistant alloc] initWithServiceType:@"yammer" discoveryInfo:nil session:session];
     
+    self.assistant = assistant;
+    
     NSLog(@"%@", assistant);
     
-    [assistant start];
+    [self.assistant start];
 }
 
 - (IBAction)start:(id)sender {

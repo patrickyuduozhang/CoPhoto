@@ -10,6 +10,6 @@
 #import <MultipeerConnectivity/MultipeerConnectivity.h>
 
 @interface MPFirstViewController : UIViewController<MCSessionDelegate, MCAdvertiserAssistantDelegate>
+@property (nonatomic, strong) MCAdvertiserAssistant *assistant;
 - (IBAction)start:(id)sender;
-
 @end
