@@ -2,7 +2,7 @@
 //  MPFirstViewController.m
 //  CoPhoto
 //
-//  Created by Yuduo Zhang on 7/10/13.
+//  Created by Yuduo Zhang on 7/di10/13.
 //  Copyright (c) 2013 Yuduo Zhang. All rights reserved.
 //
 
@@ -34,11 +34,11 @@
     
     session.delegate = self;
     
-    MCAdvertiserAssistant *assistant = [[MCAdvertiserAssistant alloc] initWithServiceType:@"yammer" discoveryInfo:nil session:session];
+    if (self.assistant) {
+        self.assistant = [[MCAdvertiserAssistant alloc] initWithServiceType:@"yammer" discoveryInfo:nil session:session];
+    }
     
-    self.assistant = assistant;
-    
-    NSLog(@"%@", assistant);
+    NSLog(@"%@", self.assistant);
     
     [self.assistant start];
 }
@@ -73,6 +73,9 @@
 - (void)session:(MCSession *)session didReceiveData:(NSData *)data fromPeer:(MCPeerID *)peerID
 {
     NSLog(@"didReceiveData");
+    //convert nsdata to image
+    UIImage *sharedImage = [UIImage imageWithData:data];
+    [self.imageView setImage:sharedImage];
 }
 
 - (void)session:(MCSession *)session didReceiveStream:(NSInputStream *)stream withName:(NSString *)streamName fromPeer:(MCPeerID *)peerID

@@ -33,22 +33,32 @@
 
 - (void)setupBrowser
 {
-    MCPeerID *myPeerID = [[MCPeerID alloc] initWithDisplayName:@"test2"];
-    MCSession *session = [[MCSession alloc] initWithPeer:myPeerID];
+    if(!self.browserViewController) {
+        MCPeerID *myPeerID = [[MCPeerID alloc] initWithDisplayName:[UIDevice currentDevice].name];
+        MCSession *session = [[MCSession alloc] initWithPeer:myPeerID];
+        self.browserViewController = [[MCBrowserViewController alloc] initWithServiceType:@"yammer" session:session];
+        self.browserViewController.delegate = self;
+    }
     
-    MCBrowserViewController *mcBrowserVC = [[MCBrowserViewController alloc] initWithServiceType:@"yammer" session:session];
-    
-    mcBrowserVC.delegate = self;
-    
-    [self presentViewController:mcBrowserVC animated:YES completion:nil];
-    NSLog(@"%@", mcBrowserVC);
+    [self presentViewController:self.browserViewController animated:YES completion:nil];
+    NSLog(@"%@", self.browserViewController);
 }
 
 // Browser VC delegate methods
 - (void)browserViewControllerDidFinish:(MCBrowserViewController *)browserViewController
 {
     NSLog(@"browserViewControllerDidFinish");
-    [browserViewController dismissViewControllerAnimated:YES completion:nil];
+    [self.browserViewController dismissViewControllerAnimated:YES completion:nil];
+    NSArray *peerIDs = [self.browserViewController.session connectedPeers];
+    
+    //send image
+    UIImage *image = [UIImage imageWithContentsOfFile:@"sf2st-blanka"];
+    NSData *imageData = UIImagePNGRepresentation(image);
+    NSError *error = nil;
+    [self.browserViewController.session sendData:imageData
+              toPeers:peerIDs
+             withMode:MCSessionSendDataReliable
+                error:&error];
 }
 
 - (void)browserViewControllerWasCancelled:(MCBrowserViewController *)browserViewController

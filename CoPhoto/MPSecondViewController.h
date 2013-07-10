@@ -12,4 +12,6 @@
 @interface MPSecondViewController : UIViewController<MCSessionDelegate, MCBrowserViewControllerDelegate>
 - (IBAction)start:(id)sender;
 
+@property (nonatomic, strong) MCBrowserViewController *browserViewController;
+
 @end
