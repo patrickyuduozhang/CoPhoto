@@ -34,7 +34,7 @@
     
     session.delegate = self;
     
-    if (self.assistant) {
+    if (!self.assistant) {
         self.assistant = [[MCAdvertiserAssistant alloc] initWithServiceType:@"yammer" discoveryInfo:nil session:session];
     }
     
