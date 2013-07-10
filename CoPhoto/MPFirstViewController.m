@@ -29,7 +29,7 @@
 
 - (void)setupAdvertiser
 {
-    MCPeerID *myPeerID = [[MCPeerID alloc] initWithDisplayName:@"test1"];
+    MCPeerID *myPeerID = [[MCPeerID alloc] initWithDisplayName:[UIDevice currentDevice].name];
     MCSession *session = [[MCSession alloc] initWithPeer:myPeerID];
     
     session.delegate = self;
