@@ -11,6 +11,8 @@
 
 @interface MPFirstViewController ()
 
+@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
+
 @end
 
 @implementation MPFirstViewController
@@ -19,6 +21,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [self.imageView addSubview:self.activityIndicator];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -116,6 +120,9 @@
 - (void)session:(MCSession *)session didStartReceivingResourceWithName:(NSString *)resourceName fromPeer:(MCPeerID *)peerID withProgress:(NSProgress *)progress
 {
     NSLog(@"didStartReceivingResourceWithName");
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.activityIndicator startAnimating];
+    });
 }
 
 - (void)session:(MCSession *)session didReceiveData:(NSData *)data fromPeer:(MCPeerID *)peerID
@@ -131,7 +138,10 @@
 - (void)session:(MCSession *)session didFinishReceivingResourceWithName:(NSString *)resourceName fromPeer:(MCPeerID *)peerID atURL:(NSURL *)localURL withError:(NSError *)error
 {
     NSLog(@"didFinishReceivingResourceWithName");
-    [self.imageView setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:localURL]]];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.activityIndicator stopAnimating];
+        [self.imageView setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:localURL]]];
+    });
 }
 
 - (IBAction)startBrowser:(id)sender
