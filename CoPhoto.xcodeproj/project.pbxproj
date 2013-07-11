@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		68CC73E0178E695100093E13 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 68CC73DF178E695100093E13 /* test.png */; };
 		FBF319F9178E1339007624BA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBF319F8178E1339007624BA /* Foundation.framework */; };
 		FBF319FB178E1339007624BA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBF319FA178E1339007624BA /* CoreGraphics.framework */; };
 		FBF319FD178E1339007624BA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBF319FC178E1339007624BA /* UIKit.framework */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		68CC73DF178E695100093E13 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
 		FBF319F5178E1339007624BA /* CoPhoto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoPhoto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBF319F8178E1339007624BA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FBF319FA178E1339007624BA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -121,6 +123,7 @@
 				FBF31A0A178E1339007624BA /* Main.storyboard */,
 				FBF31A0D178E1339007624BA /* MPFirstViewController.h */,
 				FBF31A0E178E1339007624BA /* MPFirstViewController.m */,
+				68CC73DF178E695100093E13 /* test.png */,
 				FBF31A13178E1339007624BA /* Images.xcassets */,
 				FBF319FF178E1339007624BA /* Supporting Files */,
 			);
@@ -236,6 +239,7 @@
 				FBF31A14178E1339007624BA /* Images.xcassets in Resources */,
 				FBF31A03178E1339007624BA /* InfoPlist.strings in Resources */,
 				FBF31A0C178E1339007624BA /* Main.storyboard in Resources */,
+				68CC73E0178E695100093E13 /* test.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

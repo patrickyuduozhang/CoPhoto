@@ -76,17 +76,22 @@
 - (void)browserViewControllerDidFinish:(MCBrowserViewController *)browserViewController
 {
     NSLog(@"browserViewControllerDidFinish");
+    
     [self.browserViewController dismissViewControllerAnimated:YES completion:nil];
+    
     NSArray *peerIDs = [self.browserViewController.session connectedPeers];
     
-    //send image
-    UIImage *image = [UIImage imageNamed:@"sf2st-blanka"];
-    NSData *imageData = UIImagePNGRepresentation(image);
-    NSError *error = nil;
-    [self.browserViewController.session sendData:imageData
-                                         toPeers:peerIDs
-                                        withMode:MCSessionSendDataReliable
-                                           error:&error];    
+    NSURL *MyURL = [[NSBundle mainBundle] URLForResource:@"test" withExtension:@"png"];
+    
+    for (MCPeerID *peerID in peerIDs) {
+        [self.browserViewController.session sendResourceAtURL:MyURL
+                                                     withName:@"HI"
+                                                       toPeer:peerID
+                                        withCompletionHandler:^(NSError *error) {
+                                            
+                                            NSLog(@"YOU DID IT");
+        }];
+    }
 }
 
 - (void)browserViewControllerWasCancelled:(MCBrowserViewController *)browserViewController
@@ -98,7 +103,7 @@
 // Session delegate methods
 - (void)session:(MCSession *)session peer:(MCPeerID *)peerID didChangeState:(MCSessionState)state
 {
-    NSLog(@"peerID didChangeState");
+    NSLog(@"peerID didChangeState %d", state);
 }
 
 - (void)session:(MCSession *)session didStartReceivingResourceWithName:(NSString *)resourceName fromPeer:(MCPeerID *)peerID withProgress:(NSProgress *)progress
@@ -109,9 +114,6 @@
 - (void)session:(MCSession *)session didReceiveData:(NSData *)data fromPeer:(MCPeerID *)peerID
 {
     NSLog(@"didReceiveData");
-    //convert nsdata to image
-    UIImage *sharedImage = [UIImage imageWithData:data];
-    [self.imageView setImage:sharedImage];
 }
 
 - (void)session:(MCSession *)session didReceiveStream:(NSInputStream *)stream withName:(NSString *)streamName fromPeer:(MCPeerID *)peerID
@@ -122,6 +124,7 @@
 - (void)session:(MCSession *)session didFinishReceivingResourceWithName:(NSString *)resourceName fromPeer:(MCPeerID *)peerID atURL:(NSURL *)localURL withError:(NSError *)error
 {
     NSLog(@"didFinishReceivingResourceWithName");
+    [self.imageView setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:localURL]]];
 }
 
 - (IBAction)startBrowser:(id)sender
