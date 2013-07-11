@@ -21,6 +21,13 @@
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self setupAdvertiser];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -129,7 +136,6 @@
 
 - (IBAction)startBrowser:(id)sender
 {
-    [self setupAdvertiser];
     [self setupBrowser];
 }
 @end
