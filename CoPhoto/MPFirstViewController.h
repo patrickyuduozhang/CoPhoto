@@ -14,5 +14,7 @@
 - (IBAction)start:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (nonatomic, strong) MCSession *session;
+
 
 @end

@@ -36,6 +36,9 @@
     if(!self.browserViewController) {
         MCPeerID *myPeerID = [[MCPeerID alloc] initWithDisplayName:[UIDevice currentDevice].name];
         MCSession *session = [[MCSession alloc] initWithPeer:myPeerID];
+        
+        self.session = session;
+        
         self.browserViewController = [[MCBrowserViewController alloc] initWithServiceType:@"yammer" session:session];
         self.browserViewController.delegate = self;
     }
@@ -52,13 +55,18 @@
     NSArray *peerIDs = [self.browserViewController.session connectedPeers];
     
     //send image
-    UIImage *image = [UIImage imageWithContentsOfFile:@"sf2st-blanka"];
+    UIImage *image = [UIImage imageNamed:@"sf2st-blanka"];
     NSData *imageData = UIImagePNGRepresentation(image);
     NSError *error = nil;
     [self.browserViewController.session sendData:imageData
               toPeers:peerIDs
              withMode:MCSessionSendDataReliable
                 error:&error];
+    
+    NSLog(@"ERROR: %@", error);
+    NSLog(@"Peer STUFF: %@", peerIDs);
+    NSLog(@"sending image %@", imageData);
+    
 }
 
 - (void)browserViewControllerWasCancelled:(MCBrowserViewController *)browserViewController

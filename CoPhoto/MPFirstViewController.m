@@ -32,10 +32,12 @@
     MCPeerID *myPeerID = [[MCPeerID alloc] initWithDisplayName:[UIDevice currentDevice].name];
     MCSession *session = [[MCSession alloc] initWithPeer:myPeerID];
     
-    session.delegate = self;
+    self.session = session;
+    
+    self.session.delegate = self;
     
     if (!self.assistant) {
-        self.assistant = [[MCAdvertiserAssistant alloc] initWithServiceType:@"yammer" discoveryInfo:nil session:session];
+        self.assistant = [[MCAdvertiserAssistant alloc] initWithServiceType:@"yammer" discoveryInfo:nil session:self.session];
     }
     
     NSLog(@"%@", self.assistant);

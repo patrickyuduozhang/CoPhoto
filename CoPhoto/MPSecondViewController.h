@@ -13,5 +13,6 @@
 - (IBAction)start:(id)sender;
 
 @property (nonatomic, strong) MCBrowserViewController *browserViewController;
+@property (nonatomic, strong) MCSession *session;
 
 @end
