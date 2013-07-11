@@ -15,7 +15,6 @@
 		FBF31A09178E1339007624BA /* MPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FBF31A08178E1339007624BA /* MPAppDelegate.m */; };
 		FBF31A0C178E1339007624BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBF31A0A178E1339007624BA /* Main.storyboard */; };
 		FBF31A0F178E1339007624BA /* MPFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBF31A0E178E1339007624BA /* MPFirstViewController.m */; };
-		FBF31A12178E1339007624BA /* MPSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBF31A11178E1339007624BA /* MPSecondViewController.m */; };
 		FBF31A14178E1339007624BA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBF31A13178E1339007624BA /* Images.xcassets */; };
 		FBF31A1B178E133A007624BA /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBF31A1A178E133A007624BA /* XCTest.framework */; };
 		FBF31A1C178E133A007624BA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBF319F8178E1339007624BA /* Foundation.framework */; };
@@ -49,8 +48,6 @@
 		FBF31A0B178E1339007624BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FBF31A0D178E1339007624BA /* MPFirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPFirstViewController.h; sourceTree = "<group>"; };
 		FBF31A0E178E1339007624BA /* MPFirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPFirstViewController.m; sourceTree = "<group>"; };
-		FBF31A10178E1339007624BA /* MPSecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPSecondViewController.h; sourceTree = "<group>"; };
-		FBF31A11178E1339007624BA /* MPSecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPSecondViewController.m; sourceTree = "<group>"; };
 		FBF31A13178E1339007624BA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		FBF31A19178E133A007624BA /* CoPhotoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoPhotoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBF31A1A178E133A007624BA /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -124,8 +121,6 @@
 				FBF31A0A178E1339007624BA /* Main.storyboard */,
 				FBF31A0D178E1339007624BA /* MPFirstViewController.h */,
 				FBF31A0E178E1339007624BA /* MPFirstViewController.m */,
-				FBF31A10178E1339007624BA /* MPSecondViewController.h */,
-				FBF31A11178E1339007624BA /* MPSecondViewController.m */,
 				FBF31A13178E1339007624BA /* Images.xcassets */,
 				FBF319FF178E1339007624BA /* Supporting Files */,
 			);
@@ -262,7 +257,6 @@
 				FBF31A0F178E1339007624BA /* MPFirstViewController.m in Sources */,
 				FBF31A05178E1339007624BA /* main.m in Sources */,
 				FBF31A09178E1339007624BA /* MPAppDelegate.m in Sources */,
-				FBF31A12178E1339007624BA /* MPSecondViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,6 +459,7 @@
 				FBF31A2C178E133A007624BA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FBF31A2D178E133A007624BA /* Build configuration list for PBXNativeTarget "CoPhotoTests" */ = {
 			isa = XCConfigurationList;
@@ -473,6 +468,7 @@
 				FBF31A2F178E133A007624BA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -86,12 +86,7 @@
     [self.browserViewController.session sendData:imageData
                                          toPeers:peerIDs
                                         withMode:MCSessionSendDataReliable
-                                           error:&error];
-    
-    NSLog(@"ERROR: %@", error);
-    NSLog(@"Peer STUFF: %@", peerIDs);
-    NSLog(@"sending image %@", imageData);
-    
+                                           error:&error];    
 }
 
 - (void)browserViewControllerWasCancelled:(MCBrowserViewController *)browserViewController
