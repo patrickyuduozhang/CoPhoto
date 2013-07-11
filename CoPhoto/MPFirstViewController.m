@@ -32,22 +32,17 @@
     MCPeerID *myPeerID = [[MCPeerID alloc] initWithDisplayName:[UIDevice currentDevice].name];
     MCSession *session = [[MCSession alloc] initWithPeer:myPeerID];
     
-    self.session = session;
+    self.advertiserSession = session;
     
-    self.session.delegate = self;
+    self.advertiserSession.delegate = self;
     
     if (!self.assistant) {
-        self.assistant = [[MCAdvertiserAssistant alloc] initWithServiceType:@"yammer" discoveryInfo:nil session:self.session];
+        self.assistant = [[MCAdvertiserAssistant alloc] initWithServiceType:@"yammer" discoveryInfo:nil session:self.advertiserSession];
     }
     
     NSLog(@"%@", self.assistant);
     
     [self.assistant start];
-}
-
-- (IBAction)start:(id)sender {
-    [self setupAdvertiser];
-    NSLog(@"Advertiser started");
 }
 
 // Advertiser delegate methods
@@ -59,6 +54,50 @@
 - (void)advertiserAssistantDidDismissInvitation:(MCAdvertiserAssistant *)advertiserAssistant
 {
     NSLog(@"advertiserAssistantDidDismissInvitation");
+}
+
+- (void)setupBrowser
+{
+    if(!self.browserViewController) {
+        MCPeerID *myPeerID = [[MCPeerID alloc] initWithDisplayName:[UIDevice currentDevice].name];
+        MCSession *session = [[MCSession alloc] initWithPeer:myPeerID];
+        
+        self.browserSession = session;
+        
+        self.browserViewController = [[MCBrowserViewController alloc] initWithServiceType:@"yammer" session:session];
+        self.browserViewController.delegate = self;
+    }
+    
+    [self presentViewController:self.browserViewController animated:YES completion:nil];
+    NSLog(@"%@", self.browserViewController);
+}
+
+// Browser VC delegate methods
+- (void)browserViewControllerDidFinish:(MCBrowserViewController *)browserViewController
+{
+    NSLog(@"browserViewControllerDidFinish");
+    [self.browserViewController dismissViewControllerAnimated:YES completion:nil];
+    NSArray *peerIDs = [self.browserViewController.session connectedPeers];
+    
+    //send image
+    UIImage *image = [UIImage imageNamed:@"sf2st-blanka"];
+    NSData *imageData = UIImagePNGRepresentation(image);
+    NSError *error = nil;
+    [self.browserViewController.session sendData:imageData
+                                         toPeers:peerIDs
+                                        withMode:MCSessionSendDataReliable
+                                           error:&error];
+    
+    NSLog(@"ERROR: %@", error);
+    NSLog(@"Peer STUFF: %@", peerIDs);
+    NSLog(@"sending image %@", imageData);
+    
+}
+
+- (void)browserViewControllerWasCancelled:(MCBrowserViewController *)browserViewController
+{
+    NSLog(@"browserViewControllerWasCancelled");
+    [browserViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 // Session delegate methods
@@ -90,4 +129,9 @@
     NSLog(@"didFinishReceivingResourceWithName");
 }
 
+- (IBAction)startBrowser:(id)sender
+{
+    [self setupAdvertiser];
+    [self setupBrowser];
+}
 @end

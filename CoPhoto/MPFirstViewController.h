@@ -9,12 +9,14 @@
 #import <UIKit/UIKit.h>
 #import <MultipeerConnectivity/MultipeerConnectivity.h>
 
-@interface MPFirstViewController : UIViewController<MCSessionDelegate, MCAdvertiserAssistantDelegate>
+@interface MPFirstViewController : UIViewController<MCSessionDelegate, MCAdvertiserAssistantDelegate, MCBrowserViewControllerDelegate>
 @property (nonatomic, strong) MCAdvertiserAssistant *assistant;
-- (IBAction)start:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
-@property (nonatomic, strong) MCSession *session;
+@property (nonatomic, strong) MCSession *advertiserSession;
+@property (nonatomic, strong) MCBrowserViewController *browserViewController;
+@property (nonatomic, strong) MCSession *browserSession;
+- (IBAction)startBrowser:(id)sender;
 
 
 @end
